@@ -3,16 +3,16 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='chat',
+    name='chat_take',
     version='0.1.0',
     author='cpn',
     author_email='tsvetovpavel@gmail.com',
-    description='chat',
-    # entry_points={
-    #     'console_scripts': [
-    #         'chat=chat.cli:cli',
-    #     ],
-    # },
+    description='chat_take',
+    entry_points={
+        'console_scripts': [
+            'chat_take=chat_take.cli:cli',
+        ],
+    },
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
     packages=find_packages('src'),
     package_dir={'': 'src'},

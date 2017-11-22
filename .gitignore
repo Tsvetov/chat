@@ -1,2 +1,8 @@
 .idea
 .pyc
+.tox/
+src/chat.egg-info/*
+src/chat_take.egg-info/
+src/chat_take/__pycache__/
+src/chat_take/web/__pycache__/
+tests/__pycache__/

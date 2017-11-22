@@ -1,7 +1,7 @@
 import pytest
 import tornado.web
 
-from chat.web.urls import urlpatterns
+from chat_take.web.urls import urlpatterns
 
 
 @pytest.fixture

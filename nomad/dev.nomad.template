@@ -1,4 +1,4 @@
-job "chat-$BRANCH_NAME" {
+job "chat_take-$BRANCH_NAME" {
   datacenters = ["$DATACENTER"]
 
   type = "service"
@@ -8,7 +8,7 @@ job "chat-$BRANCH_NAME" {
     stagger = "10s"
   }
 
-  group "chat-$BRANCH_NAME-web" {
+  group "chat_take-$BRANCH_NAME-web" {
     count = 1
 
     restart {
@@ -18,16 +18,16 @@ job "chat-$BRANCH_NAME" {
       delay = "10s"
     }
 
-    task "chat-$BRANCH_NAME-web" {
+    task "chat_take-$BRANCH_NAME-web" {
       driver = "docker"
 
       env {
-        SIMPLE_SETTINGS = "chat.settings.develop"
+        SIMPLE_SETTINGS = "chat_take.settings.develop"
         COMMAND_NAME = "serve"
       }
 
       config {
-        image = "docker-infra.cian.ru/chat:$IMAGE_TAG"
+        image = "docker-infra.cian.ru/chat_take:$IMAGE_TAG"
 
         port_map {
           http = 80
@@ -41,7 +41,7 @@ job "chat-$BRANCH_NAME" {
 
       service {
         port = "http"
-        name = "$BRANCH_NAME--chat"
+        name = "$BRANCH_NAME--chat_take"
         tags = ["http-dev"]
 
         check {

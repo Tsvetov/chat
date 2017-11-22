@@ -1,4 +1,4 @@
-job "chat-$STAGE_NAME" {
+job "chat_take-$STAGE_NAME" {
   datacenters = ["$DATACENTER"]
 
   type = "service"
@@ -8,7 +8,7 @@ job "chat-$STAGE_NAME" {
     stagger = "10s"
   }
 
-  group "chat-$STAGE_NAME-web" {
+  group "chat_take-$STAGE_NAME-web" {
     count = 1
 
     restart {
@@ -18,16 +18,16 @@ job "chat-$STAGE_NAME" {
       delay = "10s"
     }
 
-    task "chat-$STAGE_NAME-web" {
+    task "chat_take-$STAGE_NAME-web" {
       driver = "docker"
 
       env {
-        SIMPLE_SETTINGS = "chat.settings.production"
+        SIMPLE_SETTINGS = "chat_take.settings.production"
         COMMAND_NAME = "serve"
       }
 
       config {
-        image = "docker-infra.cian.ru/chat:$IMAGE_TAG"
+        image = "docker-infra.cian.ru/chat_take:$IMAGE_TAG"
 
         port_map {
           http = 80
@@ -41,7 +41,7 @@ job "chat-$STAGE_NAME" {
 
       service {
         port = "http"
-        name = "chat--$STAGE_NAME"
+        name = "chat_take--$STAGE_NAME"
         tags = ["micro.cian.tech", "beta"]
 
         check {
